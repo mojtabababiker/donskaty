@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Mono, Bowlby_One_SC } from "next/font/google";
+import Header from "@/components/Header";
 import "./globals.css";
+import { SVGFilters } from "@/components/SVGFilter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmMono = DM_Mono({
   subsets: ["latin"],
+  variable: "--font-dm-mono",
+  weight: "500",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bowlby = Bowlby_One_SC({
+  variable: "--font-bowlby-one",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bowlby.variable} ${dmMono.variable} font-mono font-medium text-zinc-800 antialiased`}
       >
-        {children}
+        <Header />
+        <main>{children}</main>
+        <SVGFilters />
       </body>
     </html>
   );
