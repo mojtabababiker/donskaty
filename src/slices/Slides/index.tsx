@@ -21,18 +21,19 @@ export type SlidesProps = SliceComponentProps<Content.SlidesSlice>;
 /**
  * Component for "Slides" Slices.
  */
-const Slides: FC<SlidesProps> = ({ slice }) => {
+const Slides: FC<SlidesProps> = ({ slice, index }) => {
   return (
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(
-        "bg-texture",
+        `bg-texture sticky`,
         slice.primary.theme === "Blue" && "bg-brand-blue",
         slice.primary.theme === "Lime" && "bg-brand-lime",
         slice.primary.theme === "Navy" && "bg-brand-navy",
         slice.primary.theme === "Orange" && "bg-brand-orange"
       )}
+      style={{ top: `${index * 2}rem` }}
     >
       <div className=" min-h-[75dvh] grid grid-cols-2 ~gap-6/9 justify-center place-content-center">
         {/* text */}
