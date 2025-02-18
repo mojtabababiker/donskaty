@@ -44,9 +44,14 @@ export default {
           "75%": { filter: 'url("#squiggle-3")' },
           "100%": { filter: 'url("#squiggle-4")' },
         },
+        scruple: {
+          "0%": { strokeDashoffset: "10000" },
+          "100%": { strokeDashoffset: "0" },
+        },
       },
       animation: {
         squiggle: "squiggles .5s infinite",
+        scruple: "scruple 1s forwards ease-in-out",
       },
     },
   },

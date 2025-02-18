@@ -26,13 +26,13 @@ function Header({}: Props) {
           aria-label="Main"
         >
           <ul className="w-full flex-1 flex items-center justify-center ~gap-4/8 text-xl font-medium">
-            <li className="inline-flex items-center justify-center">
+            <li className="inline-flex items-center justify-center ~text-lg/xl hover:text-brand-purple transition-colors duration-300">
               <Link href={"#"}>Team</Link>
             </li>
-            <li className="inline-flex items-center justify-center">
-              <Link href={"#"}>Customizer</Link>
+            <li className="inline-flex items-center justify-center ~text-lg/xl hover:text-brand-purple transition-colors duration-300">
+              <Link href={"/build"}>Customizer</Link>
             </li>
-            <li className="inline-flex items-center justify-center">
+            <li className="inline-flex items-center justify-center ~text-lg/xl hover:text-brand-purple transition-colors duration-300">
               <Link href={"#"}>About</Link>
             </li>
           </ul>
