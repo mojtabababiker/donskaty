@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | VideoSlice
   | SlidesSlice
   | ProductsSectionSlice
   | HeroSlice;
@@ -474,6 +475,58 @@ type SlidesSliceVariation = SlidesSliceDefault | SlidesSliceImageFirst;
  */
 export type SlidesSlice = prismic.SharedSlice<"slides", SlidesSliceVariation>;
 
+/**
+ * Primary content in *Video → Default → Primary*
+ */
+export interface VideoSliceDefaultPrimary {
+  /**
+   * YouTube ID field in *Video → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.default.primary.youtube_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  youtube_id: prismic.KeyTextField;
+
+  /**
+   * Placeholder Image field in *Video → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.default.primary.placeholder_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  placeholder_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Video Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Video*
+ */
+type VideoSliceVariation = VideoSliceDefault;
+
+/**
+ * Video Shared Slice
+ *
+ * - **API ID**: `video`
+ * - **Description**: Video
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSlice = prismic.SharedSlice<"video", VideoSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -516,6 +569,10 @@ declare module "@prismicio/client" {
       SlidesSliceVariation,
       SlidesSliceDefault,
       SlidesSliceImageFirst,
+      VideoSlice,
+      VideoSliceDefaultPrimary,
+      VideoSliceVariation,
+      VideoSliceDefault,
     };
   }
 }
