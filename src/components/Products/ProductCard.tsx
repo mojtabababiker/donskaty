@@ -12,7 +12,7 @@ import {
   LineShape,
   MonsterShape,
   ShaggyShape,
-} from "./Scriples";
+} from "@/components/Scruples";
 
 const categories = {
   moody: "text-brand-lime",

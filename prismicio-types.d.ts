@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | TeamSlice
   | VideoSlice
   | SlidesSlice
   | ProductsSectionSlice
@@ -159,7 +160,92 @@ export type ProductCardDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | ProductCardDocument;
+/**
+ * Content for Skater Card documents
+ */
+interface SkaterCardDocumentData {
+  /**
+   * Name field in *Skater Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater_card.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Fg Image field in *Skater Card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater_card.fg_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fg_image: prismic.ImageField<never>;
+
+  /**
+   * Bg Image field in *Skater Card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater_card.bg_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  bg_image: prismic.ImageField<never>;
+
+  /**
+   * Customizer Link field in *Skater Card*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater_card.customizer_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  customizer_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Team field in *Skater Card*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skater_card.team
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  team: prismic.SelectField<"alpha" | "bb4l" | "miss-board" | "moody">;
+}
+
+/**
+ * Skater Card document from Prismic
+ *
+ * - **API ID**: `skater_card`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SkaterCardDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SkaterCardDocumentData>,
+    "skater_card",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | HomepageDocument
+  | ProductCardDocument
+  | SkaterCardDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -476,6 +562,73 @@ type SlidesSliceVariation = SlidesSliceDefault | SlidesSliceImageFirst;
 export type SlidesSlice = prismic.SharedSlice<"slides", SlidesSliceVariation>;
 
 /**
+ * Item in *Team → Default → Primary → Skaters*
+ */
+export interface TeamSliceDefaultPrimarySkatersItem {
+  /**
+   * Skater field in *Team → Default → Primary → Skaters*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.skaters[].skater
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  skater: prismic.ContentRelationshipField<"skater_card">;
+}
+
+/**
+ * Primary content in *Team → Default → Primary*
+ */
+export interface TeamSliceDefaultPrimary {
+  /**
+   * Heading field in *Team → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Skaters field in *Team → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.skaters[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  skaters: prismic.GroupField<Simplify<TeamSliceDefaultPrimarySkatersItem>>;
+}
+
+/**
+ * Default variation for Team Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TeamSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Team*
+ */
+type TeamSliceVariation = TeamSliceDefault;
+
+/**
+ * Team Shared Slice
+ *
+ * - **API ID**: `team`
+ * - **Description**: Team
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamSlice = prismic.SharedSlice<"team", TeamSliceVariation>;
+
+/**
  * Primary content in *Video → Default → Primary*
  */
 export interface VideoSliceDefaultPrimary {
@@ -553,6 +706,8 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       ProductCardDocument,
       ProductCardDocumentData,
+      SkaterCardDocument,
+      SkaterCardDocumentData,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
@@ -569,6 +724,11 @@ declare module "@prismicio/client" {
       SlidesSliceVariation,
       SlidesSliceDefault,
       SlidesSliceImageFirst,
+      TeamSlice,
+      TeamSliceDefaultPrimarySkatersItem,
+      TeamSliceDefaultPrimary,
+      TeamSliceVariation,
+      TeamSliceDefault,
       VideoSlice,
       VideoSliceDefaultPrimary,
       VideoSliceVariation,
