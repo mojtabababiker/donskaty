@@ -3,6 +3,7 @@ import { DM_Mono, Bowlby_One_SC } from "next/font/google";
 import Header from "@/components/Header";
 import "./globals.css";
 import { SVGFilters } from "@/components/SVGFilter";
+import Footer from "@/components/Footer";
 
 const dmMono = DM_Mono({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
+        <Footer />
         <SVGFilters />
       </body>
     </html>

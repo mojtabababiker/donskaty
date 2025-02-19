@@ -52,3 +52,35 @@
         100% 0);
 }
 }
+
+.input-cutout {
+  position: relative;
+  filter: drop-shadow(0 -1px 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(1px 0 0 #000) drop-shadow(8px 8px #000);
+
+  &:hover, &:focus {
+    filter: drop-shadow(0 -1px 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(1px 0 0 #000) drop-shadow(2px 2px #000);
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 2px);
+    content: '';
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path:polygon(0 0, 59% 0, 98% 35%, 68% 57%, 79% 91%, 44% 100%, 0 100%, 3% 70%, 2% 35%, 7% 14%);
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: calc(100% - 3px);
+    content: '';
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path: polygon(0 0, 59% 0, 98% 35%, 68% 57%, 79% 91%, 44% 100%, 0 100%, 3% 70%, 2% 35%, 7% 14%);
+    rotate: 180deg;
+  }
+}
