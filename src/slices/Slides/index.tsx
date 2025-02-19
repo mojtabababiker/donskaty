@@ -12,6 +12,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { Heading } from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import SlideImage from "@/components/Slides/SlideImage";
+import SlideIn from "@/components/IntorAnimation/SlideIn";
 
 /**
  * Props for `Slides`.
@@ -44,47 +45,55 @@ const Slides: FC<SlidesProps> = ({ slice, index }) => {
           )}
         >
           {/* heading */}
-
-          <Heading
-            as="h2"
-            className={clsx(
-              "text-center sm:text-left w-full max-w-[640px]",
-              slice.primary.theme !== "Lime" && "text-white"
-            )}
+          <SlideIn
+            direction={slice.variation === "imageFirst" ? "right" : "left"}
           >
-            <PrismicText field={slice.primary.heading} />
-          </Heading>
-
-          {/* body */}
-          <Paragraph
-            as="div"
-            size="md"
-            className={clsx(
-              "text-center sm:text-left w-full max-w-[640px]",
-              slice.primary.theme !== "Lime" && "text-white"
-            )}
-          >
-            <PrismicRichText field={slice.primary.body} />
-          </Paragraph>
-
-          {/* button */}
-          <div className="flex items-center justify-center sm:justify-start w-full">
-            <ButtonLink
-              field={slice.primary.button}
-              size="md"
-              color={slice.primary.theme === "Lime" ? "orange" : "lime"}
+            <Heading
+              as="h2"
+              className={clsx(
+                "text-center sm:text-left w-full max-w-[640px]",
+                slice.primary.theme !== "Lime" && "text-white"
+              )}
             >
-              {slice.primary.button.text}
-            </ButtonLink>
-          </div>
+              <PrismicText field={slice.primary.heading} />
+            </Heading>
+
+            {/* body */}
+            <Paragraph
+              as="div"
+              size="md"
+              className={clsx(
+                "text-center sm:text-left w-full max-w-[640px]",
+                slice.primary.theme !== "Lime" && "text-white"
+              )}
+            >
+              <PrismicRichText field={slice.primary.body} />
+            </Paragraph>
+
+            {/* button */}
+            <div className="flex items-center justify-center sm:justify-start w-full">
+              <ButtonLink
+                field={slice.primary.button}
+                size="md"
+                color={slice.primary.theme === "Lime" ? "orange" : "lime"}
+              >
+                {slice.primary.button.text}
+              </ButtonLink>
+            </div>
+          </SlideIn>
         </div>
 
         {/* image */}
         <div className="w-full flex items-center justify-center col-span-2 sm:col-span-1 relative">
-          <SlideImage
-            fgImage={slice.primary.fg_image}
-            bgImage={slice.primary.bg_image}
-          />
+          <SlideIn
+            delay={0.5}
+            direction={slice.variation === "imageFirst" ? "left" : "right"}
+          >
+            <SlideImage
+              fgImage={slice.primary.fg_image}
+              bgImage={slice.primary.bg_image}
+            />
+          </SlideIn>
         </div>
       </div>
     </Bounded>

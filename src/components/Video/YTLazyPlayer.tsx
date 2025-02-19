@@ -3,6 +3,7 @@ import { ImageField, KeyTextField } from "@prismicio/client";
 import { useEffect, useRef, useState } from "react";
 import PlayIcon from "./PlayIcon";
 import { PrismicNextImage } from "@prismicio/next";
+import ScaleInOut from "../IntorAnimation/ScaleInOut";
 
 type VideoProps = {
   youTubeID: KeyTextField;
@@ -43,10 +44,12 @@ export function YTLazyPlayer({ youTubeID, placeholderImage }: VideoProps) {
             className="h-full"
             alt=""
           />
+          {/* <ScaleInOut direction="in" duration={0.5} delay={0.5}> */}
           <PlayIcon
             className="text-brand-lime z-30 border-4"
             onClick={() => setPlay(true)}
           />
+          {/* </ScaleInOut> */}
         </div>
       )}
       {inView && (

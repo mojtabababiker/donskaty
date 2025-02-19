@@ -44,7 +44,7 @@ function ContactForm({}: Props) {
         <Heading
           as="h3"
           size="md"
-          className="max-w-[360px] text-center text-white"
+          className="input-cutout max-w-[360px] text-center text-brand-orange"
         >
           Let's get in touch
         </Heading>

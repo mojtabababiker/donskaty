@@ -11,6 +11,7 @@ import { Heading } from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import { PrismicNextLink } from "@prismicio/next";
 import ProductCard from "@/components/Products/ProductCard";
+import SlideIn from "@/components/IntorAnimation/SlideIn";
 
 /**
  * Props for `ProductsSection`.
@@ -31,29 +32,35 @@ const ProductsSection: FC<ProductsSectionProps> = async ({ slice }) => {
       className="bg-texture bg-brand-gray ~pt-30/50"
     >
       <div className="w-full ~gap-6/10 flex flex-col items-center justify-center">
-        <Heading as="h2" className="w-full flex flex-col text-center">
-          <PrismicText field={slice.primary.heading} />
-        </Heading>
+        <SlideIn direction="bottom">
+          <Heading as="h2" className="w-full flex flex-col text-center">
+            <PrismicText field={slice.primary.heading} />
+          </Heading>
+        </SlideIn>
 
-        <Paragraph
-          as="div"
-          size="sm"
-          className="w-full flex flex-col text-center"
-        >
-          <PrismicRichText field={slice.primary.body} />
-        </Paragraph>
+        <SlideIn direction="bottom" delay={0.5}>
+          <Paragraph
+            as="div"
+            size="sm"
+            className="w-full flex flex-col text-center"
+          >
+            <PrismicRichText field={slice.primary.body} />
+          </Paragraph>
+        </SlideIn>
       </div>
 
       {/* products */}
-      <div className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center ~mt-8/12">
-        {slice.primary.product.map(
-          ({ product_card }) =>
-            // Render the item
-            isFilled.contentRelationship(product_card) && (
-              <ProductCard key={product_card.id} id={product_card.id} />
-            )
-        )}
-      </div>
+      <SlideIn direction="bottom">
+        <div className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center ~mt-8/12">
+          {slice.primary.product.map(
+            ({ product_card }) =>
+              // Render the item
+              isFilled.contentRelationship(product_card) && (
+                <ProductCard id={product_card.id} key={product_card.id} />
+              )
+          )}
+        </div>
+      </SlideIn>
     </Bounded>
   );
 };
