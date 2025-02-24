@@ -280,6 +280,46 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Skateboard Deck field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.skateboard_deck
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  skateboard_deck: prismic.ImageField<never>;
+
+  /**
+   * Skateboard Wheel field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.skateboard_wheel_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  skateboard_wheel_image: prismic.ImageField<never>;
+
+  /**
+   * Bolts Color field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.bolts_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  bolts_color: prismic.ColorField;
+
+  /**
+   * Truck Color field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.truck_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  truck_color: prismic.ColorField;
 }
 
 /**
