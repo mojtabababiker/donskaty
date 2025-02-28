@@ -7,6 +7,7 @@ import Logo from "@/components/Logo";
 import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
 import Link from "next/link";
+import Loading from "./Loading";
 
 type Props = {
   searchParams?: { wheel: string; deck: string; truck: string; bolt: string };
@@ -89,6 +90,7 @@ async function Page(props: Promise<Props>) {
           </ButtonLink>
         </div>
       </CustomizerControlsProvider>
+      <Loading />
     </div>
   );
 }
