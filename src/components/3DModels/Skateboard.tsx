@@ -37,7 +37,7 @@ type GLTFResult = GLTF & {
     Truck1: THREE.Mesh;
     Truck2: THREE.Mesh;
   };
-  materials: {};
+  materials: object;
 };
 
 export function Skateboard({
@@ -137,7 +137,7 @@ export function Skateboard({
         normalScale: new THREE.Vector2(0.3, 0.3),
         color: truckColor,
       }),
-    [truckColor]
+    [truckColor, metalNormal]
   );
 
   // wheels material

@@ -5,9 +5,7 @@ import { Bounded } from "@/components/Bounded";
 import Logo from "@/components/Logo";
 import ContactForm from "@/components/ContactForm";
 
-type Props = {};
-
-function Footer({}: Props) {
+function Footer() {
   return (
     <footer className="bg-texture bg-zinc-900 relative overflow-hidden">
       <div className="relative flex items-center justify-center md:justify-start h-[80vh] inset-0 bg-zinc-600 bg-texture">
