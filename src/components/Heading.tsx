@@ -22,7 +22,7 @@ export function Heading({
         size === "lg" && "~text-4xl/7xl",
         size === "md" && "~text-3xl/5xl",
         size === "sm" && "~text-3xl/4xl",
-        size === "xs" && "~text-xl/3xl",
+        size === "xs" && "~text-xl/2xl",
         className
       )}
     >

@@ -58,11 +58,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       {/* skateboard */}
-      <div className="absolute h-dvh w-full inset-0 z-30 flex items-center justify-center overflow-hidden">
+      <div className="absolute h-dvh w-full inset-0 z-20 flex items-center justify-center overflow-hidden">
         <InteractiveSkateboard {...skateboardProps} />
       </div>
 
-      <div className="absolute z-20 inset-0 mt-24 mx-auto grid grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16 max-w-6xl gap-4">
+      <div className="absolute z-30 inset-0 mt-24 mx-auto grid grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16 max-w-6xl gap-4">
         <Heading className="relative max-w-2xl place-self-start">
           <PrismicText field={slice.primary.heading} />
         </Heading>

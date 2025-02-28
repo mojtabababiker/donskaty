@@ -4,6 +4,131 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Board Customizer → Wheels*
+ */
+export interface CustomizerDocumentDataWheelsItem {
+  /**
+   * Texture field in *Board Customizer → Wheels*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.wheels[].texture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Board Customizer → Wheels*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.wheels[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Board Customizer → Decks*
+ */
+export interface CustomizerDocumentDataDecksItem {
+  /**
+   * Texture field in *Board Customizer → Decks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.decks[].texture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Board Customizer → Decks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.decks[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Board Customizer → Metals*
+ */
+export interface CustomizerDocumentDataMetalsItem {
+  /**
+   * UID field in *Board Customizer → Metals*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.metals[].uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+
+  /**
+   * Color field in *Board Customizer → Metals*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.metals[].color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  color: prismic.ColorField;
+}
+
+/**
+ * Content for Board Customizer documents
+ */
+interface CustomizerDocumentData {
+  /**
+   * Wheels field in *Board Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.wheels[]
+   * - **Tab**: Wheels
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  wheels: prismic.GroupField<Simplify<CustomizerDocumentDataWheelsItem>> /**
+   * Decks field in *Board Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.decks[]
+   * - **Tab**: Deck
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  decks: prismic.GroupField<Simplify<CustomizerDocumentDataDecksItem>> /**
+   * Metals field in *Board Customizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customizer.metals[]
+   * - **Tab**: Metal
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */;
+  metals: prismic.GroupField<Simplify<CustomizerDocumentDataMetalsItem>>;
+}
+
+/**
+ * Board Customizer document from Prismic
+ *
+ * - **API ID**: `customizer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CustomizerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CustomizerDocumentData>,
+    "customizer",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | TeamSlice
   | VideoSlice
@@ -243,6 +368,7 @@ export type SkaterCardDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | CustomizerDocument
   | HomepageDocument
   | ProductCardDocument
   | SkaterCardDocument;
@@ -741,6 +867,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      CustomizerDocument,
+      CustomizerDocumentData,
+      CustomizerDocumentDataWheelsItem,
+      CustomizerDocumentDataDecksItem,
+      CustomizerDocumentDataMetalsItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,

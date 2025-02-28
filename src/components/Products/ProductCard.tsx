@@ -106,7 +106,8 @@ async function ProductCard({ id }: Props) {
         <ButtonLink
           size="sm"
           className="text-center"
-          href={`/build/${product.uid}`}
+          // href={product.data.customizer_link}
+          field={product.data.customizer_link}
         >
           Customize
         </ButtonLink>
