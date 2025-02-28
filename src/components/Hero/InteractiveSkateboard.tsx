@@ -2,12 +2,7 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
-import {
-  Billboard,
-  ContactShadows,
-  Environment,
-  Html,
-} from "@react-three/drei";
+import { ContactShadows, Environment, Html } from "@react-three/drei";
 import GSAP from "gsap";
 import { Skateboard } from "../3DModels/Skateboard";
 import { Hotspot } from "./Hotspots";
@@ -112,7 +107,7 @@ function Scene({ ...props }: SkateboardProps) {
     });
   };
 
-  const tricks: Record<string, Function | undefined> = {
+  const tricks: Record<string, (board: THREE.Group) => void | undefined> = {
     front: do360Flip,
     middle: doKickFlip,
     back: doOllie,
@@ -127,7 +122,11 @@ function Scene({ ...props }: SkateboardProps) {
 
     const trick = tricks[trickName];
     setShowHotspots((cur) => ({ ...cur, [trickName]: false }));
-    trick ? trick(board) : setAnimating(false);
+    if (trick) {
+      trick(board);
+    } else {
+      setAnimating(false);
+    }
   };
 
   useGSAP(() => {
@@ -143,11 +142,11 @@ function Scene({ ...props }: SkateboardProps) {
   }, [boardRef]);
 
   return (
-    <group {...props} position={[0, -0.1, 0]} dispose={null}>
+    <group {...props} position={[0, 0.1, 0]} dispose={null}>
       <group ref={originRef}>
         <group position={[-0.25, 0, -0.635]} ref={boardRef}>
           <group position={[0, -0.086, 0.635]}>
-            <Skateboard {...props} constantWheelSpin />
+            <Skateboard {...props} constantWheelSpin pose="upright" />
 
             {/* front deck */}
             <Hotspot

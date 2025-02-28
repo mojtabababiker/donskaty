@@ -4,9 +4,7 @@ import { Heading } from "./Heading";
 import clsx from "clsx";
 import Button from "./Button";
 
-type Props = {};
-
-function ContactForm({}: Props) {
+function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -40,13 +38,42 @@ function ContactForm({}: Props) {
   };
   return (
     <form className="grid grid-cols-2 grid-rows-5 ~gap-3/4 ~mt-40/52 relative font-mono text-zinc-900">
+      <div
+        className={clsx(
+          "absolute inset-0 z-50 flex items-center justify-center rounded-lg transition-opacity duration-300 ease-in-out",
+          success ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className=" w-full h-2/3 bg-white opacity-95 blur-lg backdrop-blur-lg drop-shadow-xl rounded-lg" />
+        </div>
+        <div className="flex flex-col items-center justify-center ~p-3/4 ~gap-10/16">
+          <Heading
+            as="h4"
+            size="sm"
+            className="input-cutout text-center text-brand-orange max-w-[16ch] transition-[filter,background-position] duration-300"
+          >
+            Your message has been sent!
+          </Heading>
+          <Button
+            onClick={() => setSuccess(false)}
+            size="md"
+            color="purple"
+            type="button"
+            className="text-center items-center"
+          >
+            Close
+          </Button>
+        </div>
+      </div>
+
       <div className="col-span-2 flex items-center justify-center">
         <Heading
           as="h3"
           size="md"
           className="input-cutout max-w-[360px] text-center text-brand-orange"
         >
-          Let's get in touch
+          Let&apos;s get in touch
         </Heading>
       </div>
       {/* message input */}

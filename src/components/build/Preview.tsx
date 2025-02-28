@@ -7,7 +7,7 @@ import {
   Preload,
   useTexture,
 } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import { useCustomizerControls } from "./Context";
 import { asImageSrc } from "@prismicio/client";

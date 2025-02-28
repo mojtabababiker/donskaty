@@ -3,7 +3,6 @@ import { ImageField, KeyTextField } from "@prismicio/client";
 import { useEffect, useRef, useState } from "react";
 import PlayIcon from "./PlayIcon";
 import { PrismicNextImage } from "@prismicio/next";
-import ScaleInOut from "../IntorAnimation/ScaleInOut";
 
 type VideoProps = {
   youTubeID: KeyTextField;
@@ -16,6 +15,8 @@ export function YTLazyPlayer({ youTubeID, placeholderImage }: VideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,14 +25,13 @@ export function YTLazyPlayer({ youTubeID, placeholderImage }: VideoProps) {
       },
       { rootMargin: "1500px", threshold: 0 }
     );
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(container);
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (container) {
+        observer.unobserve(container);
       }
+      observer.disconnect();
     };
   });
   return (

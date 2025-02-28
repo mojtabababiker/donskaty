@@ -4,9 +4,7 @@ import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
 import Logo from "@/components/Logo";
 
-type Props = {};
-
-function Header({}: Props) {
+function Header() {
   return (
     <header className="absolute px-6 [.header+&]:pt-44 [.header+&]:md:pt-32 top-0 w-full ~h-32/40 ~py-4/6 md:h-32 z-50 ">
       <div className="mx-auto flex flex-wrap items-center justify-between lg:justify-center ~gap-y-6/10 ~gap-x-4/6 w-full max-w-6xl">

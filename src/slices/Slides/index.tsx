@@ -8,7 +8,6 @@ import {
 import { Bounded } from "@/components/Bounded";
 import clsx from "clsx";
 import ButtonLink from "@/components/ButtonLink";
-import { PrismicNextImage } from "@prismicio/next";
 import { Heading } from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import SlideImage from "@/components/Slides/SlideImage";

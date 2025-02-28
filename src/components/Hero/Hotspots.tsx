@@ -1,7 +1,6 @@
 import * as THREE from "three";
-import GSAP from "gsap";
 import { Billboard } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 type Props = {
   position: [number, number, number];

@@ -109,7 +109,7 @@ export function Skateboard({
       roughness: 0.8,
     });
     return material;
-  }, [deckTextureUrl]);
+  }, [deckTextureUrl, deckTextures]);
 
   // Bolts material
   const boltsMaterial = useMemo(

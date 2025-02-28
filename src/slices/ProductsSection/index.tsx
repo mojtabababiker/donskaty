@@ -6,10 +6,8 @@ import {
   SliceComponentProps,
 } from "@prismicio/react";
 import { Bounded } from "@/components/Bounded";
-import { createClient } from "@/prismicio";
 import { Heading } from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
-import { PrismicNextLink } from "@prismicio/next";
 import ProductCard from "@/components/Products/ProductCard";
 import SlideIn from "@/components/IntorAnimation/SlideIn";
 
@@ -23,7 +21,6 @@ export type ProductsSectionProps =
  * Component for "ProductsSection" Slices.
  */
 const ProductsSection: FC<ProductsSectionProps> = async ({ slice }) => {
-  const client = createClient();
   // const products
   return (
     <Bounded

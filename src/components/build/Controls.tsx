@@ -1,18 +1,13 @@
 "use client";
-import { asImageSrc, Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Content, isFilled } from "@prismicio/client";
 import { useCustomizerControls } from "./Context";
-import { Heading } from "../Heading";
 import Paragraph from "../Paragraph";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
 import { useRouter } from "next/navigation";
 
-type ControlItem =
-  | Content.CustomizerDocumentDataWheelsItem
-  | Content.CustomizerDocumentDataDecksItem
-  | Content.CustomizerDocumentDataMetalsItem;
 type ControlItemParams = {
   label: string;
   items: any[];
@@ -41,14 +36,18 @@ function Controls({ wheels, decks, trucks, bolts }: ControlsParams) {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    isFilled.keyText(selectedDeck?.uid) &&
+    if (isFilled.keyText(selectedDeck?.uid)) {
       url.searchParams.set("deck", selectedDeck?.uid);
-    isFilled.keyText(selectedWheel?.uid) &&
+    }
+    if (isFilled.keyText(selectedWheel?.uid)) {
       url.searchParams.set("wheel", selectedWheel?.uid);
-    isFilled.keyText(selectedTruck?.uid) &&
+    }
+    if (isFilled.keyText(selectedTruck?.uid)) {
       url.searchParams.set("truck", selectedTruck?.uid);
-    isFilled.keyText(selectedBolt?.uid) &&
+    }
+    if (isFilled.keyText(selectedBolt?.uid)) {
       url.searchParams.set("bolt", selectedBolt?.uid);
+    }
 
     router.replace(url.href);
   }, [selectedWheel, selectedDeck, selectedBolt, selectedTruck, router]);

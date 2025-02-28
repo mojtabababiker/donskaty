@@ -7,7 +7,6 @@ import { Heading } from "../Heading";
 import clsx from "clsx";
 import { HorizontalLine, VerticalLine } from "../Line";
 import {
-  WaveShape,
   TieShape,
   LineShape,
   MonsterShape,
