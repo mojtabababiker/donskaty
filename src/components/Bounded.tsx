@@ -15,7 +15,9 @@ export function Bounded({
   ...restProps
 }: BoundedProps) {
   return (
+    // @ts-expect-error - Ignoring the children prop type issue
     <Comp
+      // @ts-expect-error - Ignoring the children prop type issue
       className={clsx(
         "px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32",
         className

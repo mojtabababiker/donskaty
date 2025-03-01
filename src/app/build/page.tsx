@@ -8,27 +8,29 @@ import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
 import Link from "next/link";
 import Loading from "./Loading";
-
-type Props = {
-  searchParams?: { wheel: string; deck: string; truck: string; bolt: string };
+type SearchParams = {
+  wheel?: string;
+  deck?: string;
+  truck?: string;
+  bolt?: string;
 };
 
-async function Page(props: Promise<Props>) {
-  const searchParams = (await props).searchParams || {
-    wheel: "",
-    deck: "",
-    truck: "",
-    bolt: "",
-  };
-  const client = createClient();
-  const customizerSettings = await client.getSingle("customizer");
-
+async function Page(props: { searchParams: Promise<SearchParams> }) {
   const {
     wheel: passedWheel,
     deck: passedDeck,
     truck: passedTruck,
     bolt: passedBlot,
-  } = searchParams;
+  } = await props.searchParams;
+  const client = createClient();
+  const customizerSettings = await client.getSingle("customizer");
+
+  // const {
+  //   wheel: passedWheel,
+  //   deck: passedDeck,
+  //   truck: passedTruck,
+  //   bolt: passedBlot,
+  // } = searchParams || {};
 
   const { wheels, decks, metals } = customizerSettings.data;
 
