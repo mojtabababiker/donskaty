@@ -32,7 +32,7 @@ const Team: FC<TeamProps> = ({ slice }) => {
         {slice.primary.skaters.map(
           (skater, index) =>
             isFilled.contentRelationship(skater.skater) && (
-              <SlideIn key={index} delay={index * 0.2} direction="bottom">
+              <SlideIn key={index} direction="bottom">
                 <Skater key={index} id={skater.skater.id} />
               </SlideIn>
             )

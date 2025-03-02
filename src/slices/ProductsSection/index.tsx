@@ -35,7 +35,7 @@ const ProductsSection: FC<ProductsSectionProps> = async ({ slice }) => {
           </Heading>
         </SlideIn>
 
-        <SlideIn direction="bottom" delay={0.5}>
+        <SlideIn direction="bottom">
           <Paragraph
             as="div"
             size="sm"

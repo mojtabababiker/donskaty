@@ -85,7 +85,6 @@ const Slides: FC<SlidesProps> = ({ slice, index }) => {
         {/* image */}
         <div className="w-full flex items-center justify-center col-span-2 sm:col-span-1 relative">
           <SlideIn
-            delay={0.5}
             direction={slice.variation === "imageFirst" ? "left" : "right"}
           >
             <SlideImage

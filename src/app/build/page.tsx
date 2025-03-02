@@ -57,7 +57,7 @@ async function Page(props: { searchParams: Promise<SearchParams> }) {
         defaultWheel={defaultWheel}
       >
         {/* preview */}
-        <div className="relative min-h-[75vh] shrink-0 lg:grow">
+        <div className="relative min-h-[50vh] shrink-0 lg:grow">
           <div className="absolute inset-0">
             <Preview
               wheelsTexturesUrls={wheelsTexturesUrls}
@@ -86,7 +86,7 @@ async function Page(props: { searchParams: Promise<SearchParams> }) {
             size="sm"
             href="#"
             icon="plus"
-            className="mt-4 w-fit"
+            className="mt-4 mb-4 w-fit"
           >
             Add to Cart
           </ButtonLink>
